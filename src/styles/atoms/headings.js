@@ -11,19 +11,19 @@ const headings = css`
   }
 
   h1 {
-    font-size: ${({theme}) => theme.color.text.huge};
+    font-size: ${({theme}) => theme.font.size.huge};
     text-align: center;
   }
 
   h2 {
-    font-size: ${({theme}) => theme.color.text.large};
+    font-size: ${({theme}) => theme.font.size.large};
   }
 
   h3,
   h4,
   h5,
   h6 {
-    font-size: ${({theme}) => theme.color.text.large};
+    font-size: ${({theme}) => theme.font.size.large};
   }
 `;
 

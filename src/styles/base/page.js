@@ -1,7 +1,5 @@
 import {css} from 'styled-components';
 
-import {color} from '../../lib';
-
 const page = css`
   /* ==========================================================================
      #PAGE

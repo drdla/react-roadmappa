@@ -1,0 +1,258 @@
+{
+    "metadata":{
+        "title":"buildeazy Product Roadmap 2019",
+        "subject":"Product",
+        "year":2019
+    },
+    "roadmap":[
+        {
+            "businessValue":"Understand buildeazy",
+            "features":[
+                {
+                    "name":"Getting Started Page",
+                    "description":"The getting started page gives developers easy to follow step by step instructions for integrating buildeazy.",
+                    "plannedForInterval": 1
+                },
+                {
+                    "name":"buildeazy Academy",
+                    "description":"buildeazy Academy is a comprehensive program of how-to guides, trainings, and webinars for sharing best practices for monetizing content.",
+                    "plannedForInterval": 3
+                },
+                {
+                    "name":"Static Homepage",
+                    "description":"A static homepage reduces technical complexity and decouples it from the release process thus reducing maintenance effort and allowing frequent updates.",
+                    "plannedForInterval": 4
+                },
+                {
+                    "name":"Product Pages",
+                    "description":"The product pages provide all facts about the product to support the decision process of prospective customers.",
+                    "plannedForInterval": 2,
+                    "dependentFeature": {
+                        "name":"Product Videos",
+                        "description":"Product videos for merchants and users help to understand buildeazy thus removing concerns and increasing the sign-up rate.",
+                        "plannedForInterval": 3,
+                        "dependentFeature": {
+                            "name":"VR Product Demos",
+                            "description":"Crazy Virtual Reality demos!",
+                            "plannedForInterval": 3
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "businessValue":"Start Using buildeazy",
+            "features":[
+                {
+                    "name":"Automated Merchant Onboarding",
+                    "description":"Automating the onboarding process for merchants from creating an account over filling in the contract to receiving the API credentials is a prerequisite for scaling buildeazy.",
+                    "plannedForInterval": 1
+                },
+                {
+                    "name":"Demo Apps / Code Snippets",
+                    "description":"Demo apps and code snippets share best practices for integrating buildeazy thus increasing the customer base and reducing support requests.",
+                    "plannedForInterval": 1,
+                    "dependentFeature": [
+                        {
+                            "name":"Rabimmel Rabammel Rabumm",
+                            "description":"Automating the onboarding process for merchants from creating an account over filling in the contract to receiving the API credentials is a prerequisite for scaling buildeazy.",
+                            "plannedForInterval": 2,
+                            "dependentFeature": {
+                                "name":"Waaaaaat",
+                                "description":"Some serious nesting going on here.",
+                                "plannedForInterval": 3,
+                                "dependentFeature": [
+                                    {
+                                        "name":"Yo",
+                                        "description":"Some serious nesting going on here.",
+                                        "plannedForInterval": 3
+                                    },
+                                    {
+                                        "name":"Yup",
+                                        "description":"Some serious nesting going on here.",
+                                        "plannedForInterval": 3
+                                    },
+                                    {
+                                        "name":"Yes",
+                                        "description":"Some serious nesting going on here.",
+                                        "plannedForInterval": 4
+                                    },
+                                    {
+                                        "name":"Yay",
+                                        "description":"Some serious nesting going on here.",
+                                        "plannedForInterval": 4
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name":"Blau blau blau",
+                            "description":"Demo apps and code snippets share best practices for integrating buildeazy thus increasing the customer base and reducing support requests.",
+                            "plannedForInterval": 4
+                        }
+                    ]
+                },
+                {
+                    "name":"Libraries",
+                    "description":"Up to date and well documented libraries for the most common programming languages make it easier to integrate buildeazy.",
+                    "plannedForInterval": 4
+                },
+                {
+                    "name":"Prefixed Credentials",
+                    "description":"Prefixing API credentials to indicate their type and environment is an industry standard that reduces complexity and support requests.",
+                    "plannedForInterval": 2
+                },
+                {
+                    "name":"Single Merchant ID",
+                    "description":"A single Merchant ID valid for all environments reduces complexity and support requests.",
+                    "plannedForInterval": 3
+                },
+                {
+                    "name":"Unified Login",
+                    "description":"my.buildeazy.net is a single entry point for both prospective and registered users and merchants to simplify the process of registering and accessing a buildeazy account.",
+                    "plannedForInterval": 4
+                }
+            ]
+        },
+        {
+            "businessValue":"Intensify Usage",
+            "features":[
+                {
+                    "name":"Dedicated Mobile Dialogs",
+                    "description":"Dedicated mobile dialogs and flows improve the user experience on mobile.",
+                    "plannedForInterval": 2
+                },
+                {
+                    "name":"One Click Purchase",
+                    "description":"Logged in users can choose to skip the purchase dialog for PPU purchases to streamline the purchase process for experienced users.",
+                    "plannedForInterval": 4
+                },
+                {
+                    "name":"Provisioning",
+                    "description":"Provisioning adds an item to another user's invoice free of charge to facilitate giving away content as a gift.",
+                    "plannedForInterval": 4
+                },
+                {
+                    "name":"Read on: buildeazy.net/go",
+                    "description":"buildeazy.net/go redirects users to their last accessed item thus allowing \"continuity\" between different devices.",
+                    "plannedForInterval": 4
+                }
+            ]
+        },
+        {
+            "businessValue":"Increase Revenue",
+            "features":[
+                {
+                    "name":"0 € Single Sales",
+                    "description":"0 € single sales are a quick fix for requiring users to log in.",
+                    "plannedForInterval": 1
+                },
+                {
+                    "name":"Expiry Reminder Emails",
+                    "description":"Email reminders for expiring items can be used to renew them or send upselling offers.",
+                    "plannedForInterval": 1
+                },
+                {
+                    "name":"Merchant Analytics",
+                    "description":"Analytics are crucial for merchants to increase their revenue.",
+                    "plannedForInterval": 1
+                },
+                {
+                    "name":"Micro Subscriptions",
+                    "description":"By offering automatic renewal of expiring items (PPU only), buildeazy can create a new category of subscriptions.",
+                    "plannedForInterval": 4
+                },
+                {
+                    "name":"Payment Link",
+                    "description":"A payment link, embedded in the user backend, iframes and emails allows users to pay a due invoice at any time.",
+                    "plannedForInterval": 2
+                },
+                {
+                    "name":"Pay PPU Invoice with SIS Payment",
+                    "description":"By asking the user if he wants to pay his PPU purchases when paying for a SIS purchase, we can reduce the share of PPU invoices that are never paid.",
+                    "plannedForInterval": 3
+                },
+                {
+                    "name":"Reselling of Expiring Items",
+                    "description":"Enabling merchants to offer users their currently active expiring item again allows merchants to create ongoing business relationships.",
+                    "plannedForInterval": 3
+                },
+                {
+                    "name":"Seamless Renewal of Expiring Items",
+                    "description":"Queueing identical expiring items so that their total validity period is the sum of their individual validity periods removes the economic disadvantage from renewing before the item has actually expired.",
+                    "plannedForInterval": 3
+                },
+                {
+                    "name":"Single Sale Consumables",
+                    "description":"Single sales should allow quantities to sell multiple instances.",
+                    "plannedForInterval": 2
+                },
+                {
+                    "name":"Upselling",
+                    "description":"By defining upselling paths for expiring items, merchants can increase the revenue from their customer base.",
+                    "plannedForInterval": 3
+                }
+            ]
+        },
+        {
+            "businessValue":"Internationalization",
+            "features":[
+                {
+                    "name":"Distributed Infrastructure",
+                    "description":"Globally distributed infrastructure minimizes response times and improves the user experience.",
+                    "plannedForInterval": 3
+                },
+                {
+                    "name":"Legal Adjustments",
+                    "description":"Complying with U.S. legal requirements is a legal prerequisite for doing business in the U.S.",
+                    "plannedForInterval": 2
+                },
+                {
+                    "name":"Tax Management USA",
+                    "description":"Being able to handle U.S. tax rules is a legal prerequisite for doing business in the U.S.",
+                    "plannedForInterval": 4
+                }
+            ]
+        },
+        {
+            "businessValue":"Internal Prerequisites",
+            "features":[
+                {
+                    "name":"A/B Testing",
+                    "description":"A/B tests allow comparing variants of texts, layouts, flows, and interactions to continuously improve the product.",
+                    "plannedForInterval": 3
+                },
+                {
+                    "name":"Business Analytics",
+                    "description":"Business-related information about internal processes and business development are crucial for controlling operations and improving performance.",
+                    "plannedForInterval": 3
+                },
+                {
+                    "name":"Customer Service Backend",
+                    "description":"Providing information and functionality for managing users and merchants reduces cost of customer service and eliminates the risk of fatal errors when directly accessing the production database.",
+                    "plannedForInterval": 4
+                },
+                {
+                    "name":"Frontend CSS Reengineering",
+                    "description":"A uniform, modular, and maintainable frontend architecture reduces complexity, increases consistency, and speeds up development. ",
+                    "plannedForInterval": 2
+                },
+                {
+                    "name":"Improved Tracking",
+                    "description":"Reliable tracking is a core competence of buildeazy.",
+                    "plannedForInterval": 4
+                },
+                {
+                    "name":"WordPress Testsuite",
+                    "description":"Automated testing of the WordPress plugin ensures its quality and minimizes manual effort.",
+                    "plannedForInterval": 3
+                },
+                {
+                    "name":"React-based Frontend",
+                    "description":"Technical decoupling of the dialogs frontend reduces technical complexity and speeds up development.",
+                    "plannedForInterval": 3
+                }
+            ]
+        }
+    ]
+}
