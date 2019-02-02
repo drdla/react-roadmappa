@@ -15,18 +15,10 @@ const shared = css`
    */
 
   address,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
   blockquote,
   p,
   pre,
   dl,
-  ol,
-  ul,
   figure,
   hr,
   fieldset {

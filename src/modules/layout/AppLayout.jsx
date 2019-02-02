@@ -4,12 +4,9 @@ import styled from 'styled-components';
 
 import Menu from './Menu';
 import {FullscreenToggle, MenuToggle} from './HeaderButtons';
-import {Body, Header, Main, PageLayout, Sidebar} from '../../components/templates/app-layout';
-import theme from '../../theme';
+import {Body, Footer, Header, Main, PageLayout, Sidebar} from '../../components/templates/app-layout';
 
-const RoadmappaLayout = styled(PageLayout)`
-  position: fixed;
-`;
+import theme from '../../theme';
 
 const PageContent = styled(Main).attrs(() => ({
   flexDirection: 'column',
@@ -29,7 +26,7 @@ const AppLayout = ({children, roadmapTitle}) => {
   const [hasMenu, toggleMenu] = React.useState(false);
 
   return (
-    <RoadmappaLayout>
+    <PageLayout>
       <Fullscreen enabled={isFullscreen} onChange={isFullscreen => toggleFullscreen(isFullscreen)}>
         {hasMenu ? <Menu isVisible={hasMenu} /> : null}
         <Header>
@@ -53,8 +50,13 @@ const AppLayout = ({children, roadmapTitle}) => {
         <Body>
           <PageContent>{children}</PageContent>
         </Body>
+        <Footer>
+          <Sidebar />
+          <Main justifyContent="center">101110110110020010111</Main>
+          <Sidebar />
+        </Footer>
       </Fullscreen>
-    </RoadmappaLayout>
+    </PageLayout>
   );
 };
 
