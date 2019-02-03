@@ -30,7 +30,7 @@ const labelAttributes = (featureAngle, featureRadius) => {
   spacing += fineTuneLabelSpacing(featureAngle) * 0.5;
 
   // increase radius to add space between dot and label
-  const {x, y} = cartesianCenter(featureAngle, featureRadius + spacing);
+  const {x, y} = cartesianCenter(featureAngle, featureRadius + spacing, {}, 450, 900); // FIXME: pass arguments down here properly
 
   return {
     textAnchor,

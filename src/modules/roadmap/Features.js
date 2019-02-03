@@ -38,9 +38,9 @@ const Feature = styled.g`
 
 const Features = ({renderTree, sections}) => (
   <React.Fragment>
-    {renderTree.forEach(({angle, center, name, radius, section}, index) =>
-      index === 0 ? null : (
-        <Feature>
+    {renderTree.map(({angle, center, name, radius, section}, i) =>
+      i === 0 ? null : (
+        <Feature key={i}>
           <Dot center={center} section={section} sections={sections} />
           <Label {...labelAttributes(angle, radius)}>{name}</Label>
         </Feature>

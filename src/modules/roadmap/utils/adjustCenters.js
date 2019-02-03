@@ -33,7 +33,7 @@ const adjustCenters = (featureChains, intervalRadii, renderTree) => {
         radii = intervalRadii[feature.interval - 1];
         subIntervalRadius = (radii.outer - radii.inner) / splitIntervalBy;
         adjustedRadius = radii.inner + subIntervalRadius * subInterval;
-        adjustedCenter = cartesianCenter(feature.angle, adjustedRadius);
+        adjustedCenter = cartesianCenter(feature.angle, adjustedRadius, {}, 450, 900); // FIXME: pass arguments down here properly
 
         // update renderTree
         feature.center = adjustedCenter;
