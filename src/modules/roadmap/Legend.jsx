@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import getFeatures from './utils/getFeatures';
-// import getSectionColor from './utils/getSectionColor';
+import sectionColor from './utils/sectionColor';
 
 import Box from '../../components/atoms/box';
 import {UL} from '../../components/atoms/list';
@@ -10,7 +10,9 @@ import {UL} from '../../components/atoms/list';
 const FeatureList = styled(UL)``;
 
 const SectionTitle = styled.h2`
-  color: ${({theme}) => theme.color.text.default /* getSectionColor(sectionNumber, 'color') */};
+  ${({section, sections}) => sectionColor(section, sections, 'color')}
+
+  text-align: center;
 `;
 
 const Section = styled.div`
@@ -24,11 +26,13 @@ const StyledLegend = styled(Box).attrs(() => ({
   width: 100%;
 `;
 
-const Legend = ({data, numberOfColumns = 4}) => (
+const Legend = ({data, numberOfColumns = 3}) => (
   <StyledLegend>
     {data.map(({businessValue, features}, i) => (
       <Section key={i + 1} numberOfColumns={numberOfColumns}>
-        <SectionTitle>{businessValue}</SectionTitle>
+        <SectionTitle section={i} sections={data.length}>
+          {businessValue}
+        </SectionTitle>
         <FeatureList>{getFeatures(features, i)}</FeatureList>
       </Section>
     ))}

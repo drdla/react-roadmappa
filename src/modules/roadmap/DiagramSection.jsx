@@ -28,8 +28,8 @@ const DiagramSection = ({absMiddle, children, data, intervals, section, sections
     <React.Fragment>
       <DiagramSectionLabel
         text={data.businessValue}
-        sections={sections}
         section={section}
+        sections={sections}
         absMiddle={absMiddle}
         size={size}
       />
@@ -38,6 +38,8 @@ const DiagramSection = ({absMiddle, children, data, intervals, section, sections
         commonProps={commonProps}
         outerRadius={outerRadius}
         innerRadius={innerRadius}
+        section={section}
+        sections={sections}
       />
       {children}
     </React.Fragment>

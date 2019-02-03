@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {LI} from '../../components/atoms/list';
 
 const StyledLegendEntry = styled(LI)`
-  padding-bottom: ${({theme}) => theme.size.default};
+  padding-top: ${({theme}) => theme.size.default};
 `;
 
 const EntryName = styled.h3`

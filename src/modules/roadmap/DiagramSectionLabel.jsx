@@ -8,6 +8,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import describeArc from './utils/describeArc';
+import sectionColor from './utils/sectionColor';
 import perc2Abs from './utils/perc2Abs';
 
 import {diagramRadii} from './constants';
@@ -17,6 +18,8 @@ const Label = styled.text.attrs(() => ({
   x: 0,
   y: 0,
 }))`
+  ${({section, sections}) => sectionColor(section, sections, 'fill')};
+
   cursor: pointer;
   font-size: ${({theme}) => theme.font.size.small};
   user-select: none;
@@ -34,7 +37,7 @@ const DiagramSectionLabel = ({absMiddle, section, sections, size, text}) => {
       <defs>
         <path id={id} d={arc} />
       </defs>
-      <Label>
+      <Label section={section} sections={sections}>
         <textPath xlinkHref={`#${id}`}>{text}</textPath>
       </Label>
     </React.Fragment>

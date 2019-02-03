@@ -1,17 +1,21 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import sectionColor from './utils/sectionColor';
+
 import CircleSegment from './CircleSegment';
 
 const StyledBackground = styled(CircleSegment)`
+  ${({section, sections}) => sectionColor(section, sections, 'fill')};
+
   cursor: pointer;
-  opacity: 0.13; // dim the background; better use hsla colors, because transparency is problematic for printing
+  opacity: 0.13; // TODO: dim the background; better use hsla colors, because transparency is problematic for printing
   stroke: ${({theme}) => theme.color.border.white};
   stroke-width: 1px;
   transition: opacity 0.05s;
 `;
 
-const DiagramSectionBackground = ({commonProps, innerRadius, intervals, outerRadius}) => (
+const DiagramSectionBackground = ({commonProps, innerRadius, intervals, outerRadius, section, sections}) => (
   <React.Fragment>
     {Array.from(Array(intervals), (_, i) => i).map(i => {
       // classes = [
@@ -35,7 +39,16 @@ const DiagramSectionBackground = ({commonProps, innerRadius, intervals, outerRad
       //   .mousedown(function() {
       //     self.applyIntervalFilter(this, self);
       //   });
-      return <StyledBackground key={i} {...commonProps} outerRadius={outerRadius(i)} innerRadius={innerRadius(i)} />;
+      return (
+        <StyledBackground
+          key={i}
+          {...commonProps}
+          outerRadius={outerRadius(i)}
+          innerRadius={innerRadius(i)}
+          section={section}
+          sections={sections}
+        />
+      );
     })}
   </React.Fragment>
 );
