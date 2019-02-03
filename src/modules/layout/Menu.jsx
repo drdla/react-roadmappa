@@ -8,7 +8,11 @@ import {animation, mixin} from '../../styles';
 const menuItems = [
   {
     label: 'Print',
-    link: 'javascript:window.print();',
+    link: '#',
+    onClick: e => {
+      e.preventDefault();
+      window.print();
+    },
   },
   {
     label: 'Edit',
@@ -24,9 +28,11 @@ const menuItems = [
   },
 ];
 
-const MenuItem = ({label, link}) => (
+const MenuItem = ({label, link, onClick = () => {}}) => (
   <li>
-    <a href={link}>{label}</a>
+    <a href={link} onClick={onClick}>
+      {label}
+    </a>
   </li>
 );
 

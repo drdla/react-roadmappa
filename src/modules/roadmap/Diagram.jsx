@@ -111,7 +111,6 @@ export default class Diagram extends React.Component {
   buildRenderTree(section, anglePerEndPoint, featureData, parentFeatureId) {
     const {description, name, plannedForInterval} = featureData;
 
-    const self = this;
     let angle;
     let center;
     let dependentEndPointsCount;
@@ -120,10 +119,10 @@ export default class Diagram extends React.Component {
 
     if (Array.isArray(featureData)) {
       // cache the featureId, so that the elements in the array or their children don't increment it
-      tmpFeatureId = self.featureId; // FIXME
+      tmpFeatureId = this.state.featureId;
 
       // recurse through array of features; we're not touching the renderTree in this case
-      featureData.forEach(feature => self.buildRenderTree(section, anglePerEndPoint, feature, tmpFeatureId));
+      featureData.forEach(feature => this.buildRenderTree(section, anglePerEndPoint, feature, tmpFeatureId));
     } else if (featureData.hasOwnProperty('dependentFeature')) {
       interval = plannedForInterval; // just to make the following code shorter
 
@@ -177,7 +176,7 @@ export default class Diagram extends React.Component {
       });
 
       // recurse through dependent features
-      return this.buildRenderTree(section, anglePerEndPoint, featureData.dependentFeature, this.state.featureId);
+      this.buildRenderTree(section, anglePerEndPoint, featureData.dependentFeature, this.state.featureId);
     } else {
       interval = featureData.plannedForInterval; // just to make the following code shorter
 
@@ -189,7 +188,7 @@ export default class Diagram extends React.Component {
         anglePerEndPoint * this.state.endPointsBeforeCount; // angle consumed by prior end points
 
       // calculate feature center
-      center = cartesianCenter(angle, self.intervalRadii[interval - 1].center, {}, this.absMiddle, this.props.size);
+      center = cartesianCenter(angle, this.intervalRadii[interval - 1].center, {}, this.absMiddle, this.props.size);
 
       // increment featureId, because we are adding this feature to the renderTree
       const featureId = this.state.featureId + 1;
@@ -210,7 +209,7 @@ export default class Diagram extends React.Component {
           interval,
           name,
           parentFeatureId,
-          radius: self.intervalRadii[interval - 1].center,
+          radius: this.intervalRadii[interval - 1].center,
           section,
         },
       ];

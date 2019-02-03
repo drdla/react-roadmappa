@@ -7,8 +7,8 @@ const getFeatures = (features, section) => {
     return <React.Fragment>{features.map(f => getFeatures(f, section))}</React.Fragment>;
   } else if (features.hasOwnProperty('dependentFeature')) {
     return (
-      <React.Fragment>
-        <LegendEntry key={features.name} {...features} />
+      <React.Fragment key={features.name}>
+        <LegendEntry {...features} />
         {getFeatures(features.dependentFeature, section)}
       </React.Fragment>
     );

@@ -29,7 +29,7 @@ const StyledLegend = styled(Box).attrs(() => ({
 const Legend = ({data, numberOfColumns = 3}) => (
   <StyledLegend>
     {data.map(({businessValue, features}, i) => (
-      <Section key={i + 1} numberOfColumns={numberOfColumns}>
+      <Section key={i} numberOfColumns={numberOfColumns}>
         <SectionTitle section={i} sections={data.length}>
           {businessValue}
         </SectionTitle>
