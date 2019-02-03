@@ -6,7 +6,9 @@
  * @return  {Object}                        Percent values for outer, inner, and center radius of every interval
  */
 
-const getRadiiForIntervals = (diagramRadii, numberOfIntervals) => {
+import {diagramRadii} from '../constants';
+
+const getRadiiForIntervals = numberOfIntervals => {
   const step = (diagramRadii.segmentMax - diagramRadii.segmentMin) / numberOfIntervals;
   const radii = [];
 

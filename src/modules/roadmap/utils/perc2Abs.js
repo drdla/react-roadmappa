@@ -6,6 +6,6 @@
  * @return  {Number}                    Absolute value in pixels
  */
 
-const perc2Abs = (valueInPercent, size) => (parseInt(valueInPercent.replace('%', ''), 10) / 100) * size;
+const perc2Abs = (valueInPercent, size) => (parseInt(valueInPercent.toString().replace('%', ''), 10) / 100) * size;
 
 export default perc2Abs;

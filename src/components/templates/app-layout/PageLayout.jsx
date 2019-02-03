@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {stripUnit} from 'polished';
 
 import Box from '../../atoms/box';
 

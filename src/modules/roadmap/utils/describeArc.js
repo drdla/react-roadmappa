@@ -20,7 +20,13 @@ const describeArc = (centerX, centerY, radius, startAngle, endAngle, noMoveTo = 
   const largeArc = 0; // always draw a short arc
   const angelDiff = endAngle - startAngle;
   const sweep = angelDiff >= 0 && angelDiff <= 180 ? '0' : '1'; // make arc sweep into right direction
-  const d = [
+
+  if (noMoveTo) {
+    // draw the arc only, don't move to a start point first
+    return ['A', radius, radius, rotation, largeArc, sweep, end.x, end.y].join(' ');
+  }
+
+  return [
     'M',
     start.x,
     start.y, // move to start point
@@ -32,14 +38,7 @@ const describeArc = (centerX, centerY, radius, startAngle, endAngle, noMoveTo = 
     sweep,
     end.x,
     end.y, // draw arc
-  ];
-
-  if (noMoveTo) {
-    // draw the arc only, don't move to a start point first
-    d = ['A', radius, radius, rotation, largeArc, sweep, end.x, end.y];
-  }
-
-  return d.join(' ');
+  ].join(' ');
 };
 
 export default describeArc;
