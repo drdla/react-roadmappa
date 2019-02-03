@@ -11,16 +11,25 @@ const LabelBackground = styled.circle.attrs(() => ({
   fill: ${({theme}) => theme.color.background.offWhite};
 `;
 
+const LineWrapper = styled.tspan.attrs(({absMiddle, index}) => ({
+  x: '50%',
+  y: absMiddle + (index === 0 ? -12 : 12),
+  // - label.getBBox().height; TODO: not 14px on mobile screens!
+}))`
+  transform: translateX(-50%);
+`;
+
 const LabelText = styled.text.attrs(() => ({
   x: '50%',
   y: '49.75%',
 }))`
   fill: ${({theme}) => theme.color.text.default};
-  font-size: ${({theme}) => theme.font.size.default};
+  font-size: ${({theme}) => theme.font.size.large};
   text-anchor: middle;
+  transform: translateY(${({theme}) => theme.font.size.small});
 `;
 
-const DiagramLabel = ({text}) => {
+const DiagramLabel = ({absMiddle, text}) => {
   // const hasLineBreaks = (text.join(' ').match(/(\n)|(<br>)|(<br[\s]?\/>)/g) || []).length > 1;
   // regex to find line breaks
   // adjust vertical position of label, if the text has more than two lines:
@@ -35,7 +44,17 @@ const DiagramLabel = ({text}) => {
   return (
     <React.Fragment>
       <LabelBackground />
-      <LabelText>{text.map(t => (text.length > 1 ? <tspan x="50%">{t}</tspan> : {t}))}</LabelText>
+      <LabelText>
+        {text.map((t, i) =>
+          text.length > 1 ? (
+            <LineWrapper key={i} index={i} absMiddle={absMiddle}>
+              {t}
+            </LineWrapper>
+          ) : (
+            {t}
+          )
+        )}
+      </LabelText>
     </React.Fragment>
   );
 };

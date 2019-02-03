@@ -2,11 +2,13 @@ import * as React from 'react';
 import Fullscreen from 'react-full-screen';
 import styled from 'styled-components';
 
+import Icon from '../../components/atoms/icon';
 import Menu from './Menu';
 import {FullscreenToggle, MenuToggle} from './HeaderButtons';
 import {Body, Footer, Header, Main, PageLayout, Sidebar} from '../../components/templates/app-layout';
 
 import theme from '../../theme';
+import LabeledDivider from '../../components/atoms/labeled-divider';
 
 const PageContent = styled(Main).attrs(() => ({
   flexDirection: 'column',
@@ -51,9 +53,9 @@ const AppLayout = ({children, roadmapTitle}) => {
           <PageContent>{children}</PageContent>
         </Body>
         <Footer>
-          <Sidebar />
-          <Main justifyContent="center">101110110110020010111</Main>
-          <Sidebar />
+          <LabeledDivider>
+            <Icon name="logo" size="large" />
+          </LabeledDivider>
         </Footer>
       </Fullscreen>
     </PageLayout>

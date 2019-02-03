@@ -56,7 +56,7 @@ export default class Diagram extends React.Component {
             data={data.roadmap[s]}
           />
         ))}
-        <DiagramLabel text={[data.metadata.subject, data.metadata.year]} />
+        <DiagramLabel text={[data.metadata.subject, data.metadata.year]} absMiddle={this.absMiddle} />
 
         {/* // before we can render the features, we need to adjust the center points of multiple dependent features
       // in the same interval
