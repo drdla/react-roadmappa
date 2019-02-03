@@ -21,7 +21,7 @@ const LineWrapper = styled.tspan.attrs(({absMiddle, index}) => ({
 
 const LabelText = styled.text.attrs(() => ({
   x: '50%',
-  y: '49.75%',
+  y: '48%',
 }))`
   fill: ${({theme}) => theme.color.text.default};
   font-size: ${({theme}) => theme.font.size.large};
