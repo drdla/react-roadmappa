@@ -4,12 +4,41 @@
  * @param   {Number}    currentSection  Number of the current section; value has to be zero-based!
  */
 
-const DiagramSectionLabel = ({section, sections}) => {
+import * as React from 'react';
+import styled from 'styled-components';
+
+import describeArc from './utils/describeArc';
+import perc2Abs from './utils/perc2Abs';
+
+import {diagramRadii} from './constants';
+
+const Label = styled.text.attrs(() => ({
+  textAnchor: 'middle',
+  x: 0,
+  y: 0,
+}))`
+  cursor: pointer;
+  font-size: ${({theme}) => theme.font.size.small};
+  user-select: none;
+`;
+
+const DiagramSectionLabel = ({absMiddle, section, sections, size, text}) => {
   const fraction = 360 / sections;
   const startAngle = fraction * section;
   const endAngle = startAngle + fraction;
+  const arc = describeArc(absMiddle, absMiddle, perc2Abs(`${diagramRadii.sectionLabel}%`, size), endAngle, startAngle);
+  const id = `labelArc${section}`;
 
-  return null;
+  return (
+    <React.Fragment>
+      <defs>
+        <path id={id} d={arc} />
+      </defs>
+      <Label>
+        <textPath xlinkHref={`#${id}`}>{text}</textPath>
+      </Label>
+    </React.Fragment>
+  );
 
   // (labelArc = this.paper
   //   .path(

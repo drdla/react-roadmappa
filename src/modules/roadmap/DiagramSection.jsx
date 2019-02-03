@@ -6,7 +6,7 @@ import perc2Abs from './utils/perc2Abs';
 import DiagramSectionBackground from './DiagramSectionBackground';
 import DiagramSectionLabel from './DiagramSectionLabel';
 
-const DiagramSection = ({absMiddle, children, intervals, section, sections, size}) => {
+const DiagramSection = ({absMiddle, children, data, intervals, section, sections, size}) => {
   const intervalRadii = getRadiiForIntervals(intervals);
 
   const fraction = 360 / sections;
@@ -26,7 +26,13 @@ const DiagramSection = ({absMiddle, children, intervals, section, sections, size
 
   return (
     <React.Fragment>
-      <DiagramSectionLabel section={section} />
+      <DiagramSectionLabel
+        text={data.businessValue}
+        sections={sections}
+        section={section}
+        absMiddle={absMiddle}
+        size={size}
+      />
       <DiagramSectionBackground
         intervals={intervals}
         commonProps={commonProps}
