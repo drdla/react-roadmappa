@@ -44,7 +44,7 @@ const MenuItems = styled.ul`
 
   a {
     display: block;
-    padding: ${({theme}) => theme.size.default};
+    padding: ${({theme}) => theme.size.large};
     text-align: center;
     user-select: none;
   }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import {mixin} from '../../styles';
 
-const StyledButton = styled.button`
+const StyledButton = styled.div`
   ${mixin.link}
 
   background: ${({theme}) => theme.color.transparent};

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
 import adjustCenters from './utils/adjustCenters';
 import getMaximumInterval from './utils/getMaximumInterval';
@@ -6,9 +7,22 @@ import getRadiiForIntervals from './utils/getRadiiForIntervals';
 
 import DiagramSection from './DiagramSection';
 
+import {mixin} from '../../styles';
+
+const StyledDiagram = styled.svg.attrs(({size}) => ({
+  role: 'img',
+  viewBox: `0 0 ${size} ${size}`,
+}))`
+  ${mixin.centerMX}
+
+  display: block;
+  height: ${({size}) => size}px;
+  width: ${({size}) => size}px;
+`;
+
 export default class Diagram extends React.Component {
   static defaultProps = {
-    size: 600,
+    size: 1200,
   };
 
   absMiddle = this.props.size / 2;
@@ -29,7 +43,7 @@ export default class Diagram extends React.Component {
     const sectionsArray = Array.from(Array(this.sections), (_, i) => i);
 
     return (
-      <svg role="img" viewBox={`0 0 ${size} ${size}`}>
+      <StyledDiagram size={size}>
         {sectionsArray.map(s => (
           <DiagramSection
             key={s}
@@ -50,7 +64,7 @@ export default class Diagram extends React.Component {
 
       // and finally add a label at the center of the diagram; drawn last so it renders on top
       this.renderDiagramLabel(this.data.metadata.subject + '<br>' + this.data.metadata.year); */}
-      </svg>
+      </StyledDiagram>
     );
   }
 

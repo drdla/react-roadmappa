@@ -16,7 +16,17 @@ import * as React from 'react';
 import describeArc from './utils/describeArc';
 import polar2Cartesian from './utils/polar2Cartesian';
 
-const CircleSegment = ({centerX, centerY, outerRadius, innerRadius, startAngle, endAngle, otherProps = {}}) => {
+const CircleSegment = ({
+  centerX,
+  centerY,
+  className,
+  outerRadius,
+  innerRadius,
+  startAngle,
+  endAngle,
+  otherProps = {},
+  style,
+}) => {
   const outerArc = describeArc(centerX, centerY, outerRadius, startAngle, endAngle);
   const startInnerArc = polar2Cartesian(centerX, centerY, innerRadius, startAngle);
   const lineOuter2Inner = ['L', startInnerArc.x, startInnerArc.y].join(' ');
@@ -26,7 +36,7 @@ const CircleSegment = ({centerX, centerY, outerRadius, innerRadius, startAngle, 
   // join path fragments
   const circleSegmentPath = [outerArc, lineOuter2Inner, innerArc, closePath].join(' ');
 
-  return <path d={circleSegmentPath} {...otherProps} />;
+  return <path d={circleSegmentPath} {...otherProps} className={className} style={style} />;
 };
 
 export default CircleSegment;

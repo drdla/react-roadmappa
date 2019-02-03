@@ -1,6 +1,15 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
 import CircleSegment from './CircleSegment';
+
+const StyledBackground = styled(CircleSegment)`
+  cursor: pointer;
+  opacity: 0.13; // dim the background; better use hsla colors, because transparency is problematic for printing
+  stroke: ${({theme}) => theme.color.border.white};
+  stroke-width: 1px;
+  transition: opacity 0.05s;
+`;
 
 const DiagramSectionBackground = ({commonProps, innerRadius, intervals, outerRadius}) => (
   <React.Fragment>
@@ -26,7 +35,7 @@ const DiagramSectionBackground = ({commonProps, innerRadius, intervals, outerRad
       //   .mousedown(function() {
       //     self.applyIntervalFilter(this, self);
       //   });
-      return <CircleSegment key={i} {...commonProps} outerRadius={outerRadius(i)} innerRadius={innerRadius(i)} />;
+      return <StyledBackground key={i} {...commonProps} outerRadius={outerRadius(i)} innerRadius={innerRadius(i)} />;
     })}
   </React.Fragment>
 );

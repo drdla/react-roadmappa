@@ -8,6 +8,7 @@ const Body = styled(Box)`
    */
 
   align-items: stretch;
+  background: ${({theme}) => theme.color.background.white};
   flex: 1; /* 1 */
 `;
 

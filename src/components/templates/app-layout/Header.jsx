@@ -8,6 +8,7 @@ const Header = styled(Box).attrs(({alignItems, flexDirection}) => ({
   alignItems: alignItems || 'center',
   flexDirection: flexDirection || 'row',
 }))`
+  background: ${({theme}) => theme.color.background.white};
   min-height: ${minHeaderHeight};
 `;
 

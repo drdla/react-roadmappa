@@ -7,6 +7,7 @@ const Footer = styled(Box)`
    * 1 - Add ample vertical spacing to set footer apart from content visually
    */
 
+  background: ${({theme}) => theme.color.background.white};
   padding-bottom: ${({theme}) => theme.size.large}; /* 1 */
   padding-top: ${({theme}) => theme.size.huge}; /* 1 */
 `;

@@ -15,8 +15,8 @@ const getRadiiForIntervals = numberOfIntervals => {
   for (let i = 0; i < numberOfIntervals; i++) {
     radii.push({
       inner: diagramRadii.segmentMin + i * step,
-      center: diagramRadii.segmentMin + (i + 1) * step,
-      outer: diagramRadii.segmentMin + (i + 0.5) * step,
+      center: diagramRadii.segmentMin + (i + 0.5) * step,
+      outer: diagramRadii.segmentMin + (i + 1) * step,
     });
   }
 

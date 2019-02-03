@@ -77,6 +77,7 @@ const theme = {
       darker: darken(desaturate(colorBorder, 3), 16),
       lighter: lighten(colorBorder, 8),
       lightest: lighten(colorBorder, 13),
+      white,
     },
     inherit: 'inherit',
     state: {
