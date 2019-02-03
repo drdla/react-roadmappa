@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import sectionColor from './utils/sectionColor';
 
-const Features = ({renderTree}) => {
+const Features = ({renderTree, sections}) => {
   return null;
   // var self = this,
   //   // $details = $('#js_roadmapDetails'), // TODO: get this property from constructor

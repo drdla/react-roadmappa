@@ -8,8 +8,8 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import describeArc from './utils/describeArc';
-import sectionColor from './utils/sectionColor';
 import perc2Abs from './utils/perc2Abs';
+import sectionColor from './utils/sectionColor';
 
 import {diagramRadii} from './constants';
 

@@ -7,13 +7,13 @@ import sectionColor from './utils/sectionColor';
 const Connector = styled.path.attrs(({path}) => ({
   d: path,
 }))`
-  ${({section}) => sectionColor(section, 'stroke')}
+  ${({section, sections}) => sectionColor(section, sections, 'stroke')}
   stroke-linecap: round;
   stroke-width: 1.25px;
   transition: opacity ${({theme}) => theme.transition.time.veryFast} ease-in;
 `;
 
-const Connectors = ({absMiddle, renderTree}) => (
+const Connectors = ({absMiddle, renderTree, sections}) => (
   <React.Fragment>
     {renderTree.map(({center: c, parentFeatureId, section}, i) => {
       if (i === 0) {
@@ -22,7 +22,9 @@ const Connectors = ({absMiddle, renderTree}) => (
 
       const p = parentCenter(renderTree[parentFeatureId], absMiddle);
 
-      return <Connector key={i} path={['M', c.x, c.y, 'L', p.x, p.y].join(' ')} section={section} />;
+      return (
+        <Connector key={i} path={['M', c.x, c.y, 'L', p.x, p.y].join(' ')} section={section} sections={sections} />
+      );
     })}
   </React.Fragment>
 );

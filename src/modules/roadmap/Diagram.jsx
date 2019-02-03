@@ -11,6 +11,7 @@ import getRadiiForIntervals from './utils/getRadiiForIntervals';
 import Connectors from './Connectors';
 import DiagramLabel from './DiagramLabel';
 import DiagramSection from './DiagramSection';
+import Features from './Features';
 
 import {mixin} from '../../styles';
 
@@ -44,7 +45,9 @@ export default class Diagram extends React.Component {
 
   render() {
     const {data, size} = this.props;
+    const {subject, year} = data.metadata;
     const {renderTree} = this.state;
+    const sections = this.sections.length;
     const am = this.absMiddle;
 
     return (
@@ -53,16 +56,16 @@ export default class Diagram extends React.Component {
           <DiagramSection
             key={s}
             section={s}
-            sections={this.sections.length}
+            sections={sections}
             intervals={this.intervals}
             absMiddle={am}
             size={size}
             data={data.roadmap[s]}
           />
         ))}
-        <DiagramLabel text={[data.metadata.subject, data.metadata.year]} absMiddle={am} />
-        <Connectors renderTree={renderTree} absMiddle={am} />
-        <Features renderTree={renderTree} />
+        <DiagramLabel text={[subject, year]} absMiddle={am} />
+        <Connectors renderTree={renderTree} absMiddle={am} sections={sections} />
+        <Features renderTree={renderTree} sections={sections} />
       </StyledDiagram>
     );
   }

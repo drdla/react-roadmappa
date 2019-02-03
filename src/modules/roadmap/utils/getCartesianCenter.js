@@ -11,7 +11,7 @@
 import perc2Abs from './perc2Abs';
 import polar2Cartesian from './polar2Cartesian';
 
-const getCartesianCenter = (angle, radius, center, absMiddle) =>
+const getCartesianCenter = (angle, radius, center = {}, absMiddle) =>
   polar2Cartesian(center.x || absMiddle, center.y || absMiddle, perc2Abs(radius + '%'), angle);
 
 export default getCartesianCenter;
