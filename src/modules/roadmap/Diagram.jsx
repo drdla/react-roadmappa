@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import adjustCenters from './utils/adjustCenters';
 import buildFeatureChains from './utils/buildFeatureChains';
 import countFeatureEndpoints from './utils/countFeatureEndpoints';
-import getCartesianCenter from './utils/getCartesianCenter';
+import cartesianCenter from './utils/cartesianCenter';
 import getMaximumInterval from './utils/getMaximumInterval';
 import getRadiiForIntervals from './utils/getRadiiForIntervals';
 
@@ -139,7 +139,7 @@ export default class Diagram extends React.Component {
         anglePerEndPoint * (dependentEndPointsCount / 2 - 1 / 2); // middle of dependent end points
 
       // calculate feature center
-      center = getCartesianCenter(angle, this.intervalRadii[interval - 1].center);
+      center = cartesianCenter(angle, this.intervalRadii[interval - 1].center);
 
       // increment featureId, because we are adding this feature to the renderTree
       const featureId = this.state.featureId + 1;
@@ -189,7 +189,7 @@ export default class Diagram extends React.Component {
         anglePerEndPoint * this.state.endPointsBeforeCount; // angle consumed by prior end points
 
       // calculate feature center
-      center = getCartesianCenter(angle, self.intervalRadii[interval - 1].center);
+      center = cartesianCenter(angle, self.intervalRadii[interval - 1].center);
 
       // increment featureId, because we are adding this feature to the renderTree
       const featureId = this.state.featureId + 1;

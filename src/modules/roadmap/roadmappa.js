@@ -105,7 +105,7 @@ var Snap = require('snapsvg');
                 radii = self.intervalRadii[feature.interval - 1];
                 subIntervalRadius = (radii.outer - radii.inner) / splitIntervalBy;
                 adjustedRadius = radii.inner + subIntervalRadius * subInterval;
-                adjustedCenter = self.getCartesianCenter(feature.angle, adjustedRadius);
+                adjustedCenter = self.cartesianCenter(feature.angle, adjustedRadius);
 
                 // update renderTree
                 feature.center = adjustedCenter;
@@ -241,7 +241,7 @@ var Snap = require('snapsvg');
             anglePerEndPoint * (dependentEndPointsCount / 2 - 1 / 2); // middle of dependent end points
 
           // calculate feature center
-          center = self.getCartesianCenter(angle, self.intervalRadii[interval - 1].center);
+          center = self.cartesianCenter(angle, self.intervalRadii[interval - 1].center);
 
           // build featureChains to calculate number of chained features planned for the same interval
           self.buildFeatureChains(interval, parentFeatureId, this.featureId);
@@ -277,7 +277,7 @@ var Snap = require('snapsvg');
             anglePerEndPoint * this.endPointsBeforeCount; // angle consumed by prior end points
 
           // calculate feature center
-          center = self.getCartesianCenter(angle, self.intervalRadii[interval - 1].center);
+          center = self.cartesianCenter(angle, self.intervalRadii[interval - 1].center);
 
           // build featureChains to calculate number of chained features planned for the same interval
           self.buildFeatureChains(interval, parentFeatureId, this.featureId);
@@ -394,7 +394,7 @@ var Snap = require('snapsvg');
         spacing += this.fineTuneLabelSpacing(featureAngle) * 0.5;
 
         // increase radius to add space between dot and label
-        labelCenter = this.getCartesianCenter(featureAngle, featureRadius + spacing);
+        labelCenter = this.cartesianCenter(featureAngle, featureRadius + spacing);
 
         return {
           textAnchor: textAnchor,
@@ -733,7 +733,7 @@ var Snap = require('snapsvg');
        *
        * @return  {Object}            X and y coordinates of point
        */
-      getCartesianCenter(angle, radius, center) {
+      cartesianCenter(angle, radius, center) {
         if (!Snap.is(center, 'object') || (center.x === undefined || center.y === undefined)) {
           // use diagram center as default center point
           center = {

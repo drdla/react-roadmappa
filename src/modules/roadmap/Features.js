@@ -1,74 +1,52 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import labelAttributes from './utils/labelAttributes';
 import sectionColor from './utils/sectionColor';
 
-const Features = ({renderTree, sections}) => {
-  return null;
-  // var self = this,
-  //   // $details = $('#js_roadmapDetails'), // TODO: get this property from constructor
-  //   connectorClasses,
-  //   parent,
-  //   parentPoint,
-  //   classes,
-  //   labelAttributes;
-  // // draw all dots and labels
-  // this.state.renderTree.forEach(function(feature, index) {
-  //   if (index > 0) {
-  //     classes = [
-  //       'roadmap__feature', // class for styling with CSS
-  //       'js_feature', // base class for targeting features
-  //       'js_section-' + (feature.section + 1), // class for targeting all features of a section
-  //       'js_interval-' + feature.interval, // class for targeting all features of an interval
-  //     ];
-  //     labelAttributes = self.getLabelAttributes(feature.angle, feature.radius);
-  //     // group dot and label into one 'feature'
-  //     self.paper
-  //       .g(
-  //         // feature dot
-  //         self.paper
-  //           .circle(feature.center.x, feature.center.y, self.diagramRadii.dot)
-  //           .addClass('roadmap__feature-dot js_featureDot ' + self.getColorOfSection(feature.section, 'stroke')),
-  //         // feature label
-  //         self.paper
-  //           .text(labelAttributes.x, labelAttributes.y, feature.name)
-  //           .addClass('roadmap__feature-label js_featureLabel')
-  //           .attr({
-  //             'text-anchor': labelAttributes.textAnchor,
-  //           })
-  //       )
-  //       .attr({
-  //         id: 'js_feature-' + index,
-  //       })
-  //       .addClass(classes.join(' '))
-  //       .hover(
-  //         function() {
-  //           if (!this.hasClass(self.stateClass.filteredOut)) {
-  //             // get feature details and fade in details placeholder
-  //             $details
-  //               .html(
-  //                 // find corresponding legend entry and get its markup
-  //                 // TODO: this should be done with the featureId so jQuery can be removed
-  //                 $('.js_legendEntry > h3:contains(' + feature.name + ')')
-  //                   .parent('li')
-  //                   .html()
-  //               )
-  //               .stop(true, true)
-  //               .animate({opacity: 1}, 50);
-  //           }
-  //         },
-  //         function() {
-  //           if (!this.hasClass(self.stateClass.filteredOut)) {
-  //             // empty details placeholder and fade it out
-  //             $details
-  //               .html('')
-  //               .stop(true, true)
-  //               .animate({opacity: 0}, 50);
-  //           }
-  //         }
-  //       );
-  //   }
-  // });
-};
+import {diagramRadii} from './constants';
+
+const Dot = styled.circle.attrs(({center}) => ({
+  cx: center.x,
+  cy: center.y,
+  r: diagramRadii.dot,
+}))`
+  ${({section, sections}) => sectionColor(section, sections, 'stroke')}
+
+  fill: ${({theme}) => theme.color.background.offWhite};
+  stroke-width: 1.5px;
+  transform-origin: center center;
+  transition: 0.1s ease-in;
+`;
+
+const Label = styled.text.attrs(({x, y}) => ({
+  x,
+  y,
+}))`
+  cursor: default;
+  dominant-baseline: middle;
+  fill: ${({theme}) => theme.color.text.default};
+  font-size: ${({theme}) => theme.font.size.small};
+  text-anchor: ${({textAnchor}) => textAnchor};
+  transition: 0.1s ease-in;
+  user-select: none;
+`;
+
+const Feature = styled.g`
+  cursor: pointer;
+`;
+
+const Features = ({renderTree, sections}) => (
+  <React.Fragment>
+    {renderTree.forEach(({angle, center, name, radius, section}, index) =>
+      index === 0 ? null : (
+        <Feature>
+          <Dot center={center} section={section} sections={sections} />
+          <Label {...labelAttributes(angle, radius)}>{name}</Label>
+        </Feature>
+      )
+    )}
+  </React.Fragment>
+);
 
 export default Features;

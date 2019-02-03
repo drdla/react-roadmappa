@@ -1,4 +1,4 @@
-import getCartesianCenter from './getCartesianCenter';
+import cartesianCenter from './cartesianCenter';
 
 const adjustCenters = (featureChains, intervalRadii, renderTree) => {
   /*
@@ -33,7 +33,7 @@ const adjustCenters = (featureChains, intervalRadii, renderTree) => {
         radii = intervalRadii[feature.interval - 1];
         subIntervalRadius = (radii.outer - radii.inner) / splitIntervalBy;
         adjustedRadius = radii.inner + subIntervalRadius * subInterval;
-        adjustedCenter = getCartesianCenter(feature.angle, adjustedRadius);
+        adjustedCenter = cartesianCenter(feature.angle, adjustedRadius);
 
         // update renderTree
         feature.center = adjustedCenter;

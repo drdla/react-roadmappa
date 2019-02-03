@@ -13,20 +13,24 @@ const Connector = styled.path.attrs(({path}) => ({
   transition: opacity ${({theme}) => theme.transition.time.veryFast} ease-in;
 `;
 
-const Connectors = ({absMiddle, renderTree, sections}) => (
-  <React.Fragment>
-    {renderTree.map(({center: c, parentFeatureId, section}, i) => {
-      if (i === 0) {
-        return null;
-      }
+const Connectors = ({absMiddle, renderTree, sections}) => {
+  console.log('renderTree', renderTree);
 
-      const p = parentCenter(renderTree[parentFeatureId], absMiddle);
+  return (
+    <React.Fragment>
+      {renderTree.map(({center: c, parentFeatureId, section}, i) => {
+        if (i === 0) {
+          return null;
+        }
 
-      return (
-        <Connector key={i} path={['M', c.x, c.y, 'L', p.x, p.y].join(' ')} section={section} sections={sections} />
-      );
-    })}
-  </React.Fragment>
-);
+        const p = parentCenter(renderTree[parentFeatureId], absMiddle);
+
+        return (
+          <Connector key={i} path={['M', c.x, c.y, 'L', p.x, p.y].join(' ')} section={section} sections={sections} />
+        );
+      })}
+    </React.Fragment>
+  );
+};
 
 export default Connectors;
