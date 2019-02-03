@@ -37,7 +37,6 @@ const Label = styled.span`
   ${mixin.centerX}
 
   background: ${({theme}) => theme.color.background.white}; /* 1 */
-  color: ${({theme}) => theme.color.text.lightest};
   display: inline-block; /* 1 */
   transform: translate3d(-50%, -50%, 0); /* 2 */
   padding: ${({theme}) => theme.size.default}; /* 1 */
