@@ -5,6 +5,7 @@ import adjustCenters from './utils/adjustCenters';
 import getMaximumInterval from './utils/getMaximumInterval';
 import getRadiiForIntervals from './utils/getRadiiForIntervals';
 
+import DiagramLabel from './DiagramLabel';
 import DiagramSection from './DiagramSection';
 
 import {mixin} from '../../styles';
@@ -38,7 +39,7 @@ export default class Diagram extends React.Component {
   };
 
   render() {
-    const {size} = this.props;
+    const {data, size} = this.props;
 
     const sectionsArray = Array.from(Array(this.sections), (_, i) => i);
 
@@ -52,9 +53,10 @@ export default class Diagram extends React.Component {
             intervals={this.intervals}
             absMiddle={this.absMiddle}
             size={size}
-            data={this.props.data.roadmap[s]}
+            data={data.roadmap[s]}
           />
         ))}
+        <DiagramLabel text={[data.metadata.subject, data.metadata.year]} />
 
         {/* // before we can render the features, we need to adjust the center points of multiple dependent features
       // in the same interval
@@ -62,9 +64,7 @@ export default class Diagram extends React.Component {
 
       // now draw the renderTree
       this.renderRenderTree();
-
-      // and finally add a label at the center of the diagram; drawn last so it renders on top
-      this.renderDiagramLabel(this.data.metadata.subject + '<br>' + this.data.metadata.year); */}
+        */}
       </StyledDiagram>
     );
   }
