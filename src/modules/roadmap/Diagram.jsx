@@ -23,7 +23,7 @@ const StyledDiagram = styled.svg.attrs(({size}) => ({
 
 export default class Diagram extends React.Component {
   static defaultProps = {
-    size: 800,
+    size: 900,
   };
 
   absMiddle = this.props.size / 2;
