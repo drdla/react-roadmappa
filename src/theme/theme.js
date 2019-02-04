@@ -69,7 +69,7 @@ const theme = {
       lightest: lighten(desaturate(colorBackground, 1), 5),
       offWhite: lighten(desaturate(colorBackground, 8), 8),
       white,
-      overlay: transparentize(darken(saturate(colorBackground, 11), 92), 22),
+      overlay: transparentize(darken(saturate(colorBackground, 11), 92), 13),
       clickable: transparentize(lighten(saturate(colorClickable, 3), 8), 72), // clickable.highlight transparentized
     },
     border: {
