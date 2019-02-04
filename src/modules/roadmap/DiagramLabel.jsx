@@ -8,7 +8,7 @@ const LabelBackground = styled.circle.attrs(() => ({
   cy: '50%',
   r: `${diagramRadii.segmentMin}%`,
 }))`
-  fill: ${({theme}) => theme.color.background.offWhite};
+  fill: ${({theme}) => theme.color.background.white};
 `;
 
 const LineWrapper = styled.tspan.attrs(({absMiddle, index}) => ({

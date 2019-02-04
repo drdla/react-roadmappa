@@ -21,7 +21,7 @@ const Label = styled.text.attrs(() => ({
   ${({section, sections}) => sectionColor(section, sections, 'fill')};
 
   cursor: pointer;
-  font-size: ${({theme}) => theme.font.size.small};
+  font-size: ${({theme}) => theme.font.size.large};
   user-select: none;
 `;
 

@@ -13,7 +13,7 @@ const Dot = styled.circle.attrs(({center}) => ({
 }))`
   ${({section, sections}) => sectionColor(section, sections, 'stroke')}
 
-  fill: ${({theme}) => theme.color.background.offWhite};
+  fill: ${({theme}) => theme.color.background.white};
   stroke-width: 1.5px;
   transform-origin: center center;
   transition: 0.1s ease-in;
