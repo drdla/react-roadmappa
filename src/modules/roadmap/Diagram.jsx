@@ -35,11 +35,12 @@ export default class Diagram extends React.Component {
   intervals = maximumInterval(this.props.data.roadmap);
   intervalRadii = getIntervalRadii(this.intervals);
   sections = this.props.data.roadmap.map((_, i) => i);
+  renderTree = [{}]; // array, seeded with empty root object
+  endPointsBeforeCount = 0;
+  featureChains = [];
+  featureId = 0;
 
   state = {
-    endPointsBeforeCount: 0,
-    featureChains: [],
-    featureId: 0,
     renderTree: [{}], // array, seeded with empty root object
   };
 
@@ -77,8 +78,7 @@ export default class Diagram extends React.Component {
 
     // before we can render the features, we need to adjust the center points of multiple dependent features
     // in the same interval
-    const featureChains = adjustCenters(this.state.featureChains, this.intervalRadii, this.state.renderTree);
-    this.setState({featureChains});
+    this.featureChains = adjustCenters(this.featureChains, this.intervalRadii, this.renderTree);
   }
 
   buildRenderTreeFromSections = () => {
@@ -92,12 +92,14 @@ export default class Diagram extends React.Component {
       const anglePerEndPoint = 360 / this.sections.length / countFeatureEndpoints(features);
 
       // reset endPointsBeforeCount for every section
-      this.setState({endPointsBeforeCount: 0});
+      this.endPointsBeforeCount = 0;
 
       features.forEach(feature => {
         this.buildRenderTree(section, anglePerEndPoint, feature);
       });
     });
+
+    this.setState({renderTree: [...this.renderTree]});
   };
 
   /*
@@ -120,7 +122,7 @@ export default class Diagram extends React.Component {
 
     if (Array.isArray(featureData)) {
       // cache the featureId, so that the elements in the array or their children don't increment it
-      tmpFeatureId = this.state.featureId;
+      tmpFeatureId = this.featureId;
 
       // recurse through array of features; we're not touching the renderTree in this case
       featureData.forEach(feature => this.buildRenderTree(section, anglePerEndPoint, feature, tmpFeatureId));
@@ -135,49 +137,35 @@ export default class Diagram extends React.Component {
         (360 / this.sections.length) * section + // start angle of section
         (anglePerEndPoint * 1) / 2 + // center all features within section
         // by shifting them by 1/2 angle unit
-        anglePerEndPoint * this.state.endPointsBeforeCount + // angle consumed by prior end points
+        anglePerEndPoint * this.endPointsBeforeCount + // angle consumed by prior end points
         anglePerEndPoint * (dependentEndPointsCount / 2 - 1 / 2); // middle of dependent end points
 
       // calculate feature center
       center = cartesianCenter(angle, this.intervalRadii[interval - 1].center, {}, this.absMiddle, this.props.size);
 
       // increment featureId, because we are adding this feature to the renderTree
-      const featureId = this.state.featureId + 1;
+      this.featureId++;
 
       // build featureChains to calculate number of chained features planned for the same interval
-      const featureChains = buildFeatureChains(
-        this.state.featureChains,
-        interval,
-        parentFeatureId,
-        this.state.featureId
-      );
+      this.featureChains = buildFeatureChains(this.featureChains, interval, parentFeatureId, this.featureId);
 
       // add feature data to render tree
-      const renderTree = [
-        ...this.state.renderTree,
-        {
-          angle,
-          anglePerEndPoint,
-          center,
-          dependentEndPointsCount,
-          description,
-          endPointsBeforeCount: this.state.endPointsBeforeCount,
-          interval,
-          name,
-          parentFeatureId,
-          radius: this.intervalRadii[interval - 1].center,
-          section,
-        },
-      ];
-
-      this.setState({
-        featureChains,
-        featureId,
-        renderTree,
+      this.renderTree.push({
+        angle,
+        anglePerEndPoint,
+        center,
+        dependentEndPointsCount,
+        description,
+        endPointsBeforeCount: this.endPointsBeforeCount,
+        interval,
+        name,
+        parentFeatureId,
+        radius: this.intervalRadii[interval - 1].center,
+        section,
       });
 
       // recurse through dependent features
-      this.buildRenderTree(section, anglePerEndPoint, featureData.dependentFeature, this.state.featureId);
+      this.buildRenderTree(section, anglePerEndPoint, featureData.dependentFeature, this.featureId);
     } else {
       interval = featureData.plannedForInterval; // just to make the following code shorter
 
@@ -186,41 +174,30 @@ export default class Diagram extends React.Component {
         (360 / this.sections.length) * section + // start angle of section
         (anglePerEndPoint * 1) / 2 + // center all features within section
         // by shifting them by 1/2 angle unit
-        anglePerEndPoint * this.state.endPointsBeforeCount; // angle consumed by prior end points
+        anglePerEndPoint * this.endPointsBeforeCount; // angle consumed by prior end points
 
       // calculate feature center
       center = cartesianCenter(angle, this.intervalRadii[interval - 1].center, {}, this.absMiddle, this.props.size);
 
       // increment featureId, because we are adding this feature to the renderTree
-      const featureId = this.state.featureId + 1;
+      this.featureId++;
 
       // build featureChains to calculate number of chained features planned for the same interval
-      const featureChains = buildFeatureChains(this.state.featureChains, interval, parentFeatureId, this.featureId);
+      this.featureChains = buildFeatureChains(this.featureChains, interval, parentFeatureId, this.featureId);
 
       // add feature data to render tree
-      const renderTree = [
-        ...this.state.renderTree,
-        {
-          angle,
-          anglePerEndPoint,
-          center,
-          dependentEndPointsCount: 0,
-          description,
-          endPointsBeforeCount: this.state.endPointsBeforeCount,
-          interval,
-          name,
-          parentFeatureId,
-          radius: this.intervalRadii[interval - 1].center,
-          section,
-        },
-      ];
-
-      // we have an end point! so let's increment endPointsBeforeCount
-      this.setState({
-        endPointsBeforeCount: this.state.endPointsBeforeCount + 1,
-        featureChains,
-        featureId,
-        renderTree,
+      this.renderTree.push({
+        angle,
+        anglePerEndPoint,
+        center,
+        dependentEndPointsCount: 0,
+        description,
+        endPointsBeforeCount: this.endPointsBeforeCount,
+        interval,
+        name,
+        parentFeatureId,
+        radius: this.intervalRadii[interval - 1].center,
+        section,
       });
     }
   }
