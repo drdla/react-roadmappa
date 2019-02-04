@@ -20,7 +20,7 @@ var Snap = require('snapsvg');
 
         this.paper = null;
 
-        this.intervals = this.getMaximumInterval();
+        this.intervals = this.maximumInterval();
         this.sections = this.data.roadmap.length;
         this.renderTree = [{}]; // array, seeded with empty root object
         this.featureId = 0;
@@ -34,7 +34,7 @@ var Snap = require('snapsvg');
           sectionLabel: 48, // radius of textpath for section labels; in %
           dot: 4, // radius of feature dots; in px
         };
-        this.intervalRadii = this.getRadiiForIntervals(this.intervals);
+        this.intervalRadii = this.getIntervalRadii(this.intervals);
         this.stateClass = {
           selected: 'is-selected',
           filteredOut: 'is-filtered-out',
@@ -636,7 +636,7 @@ var Snap = require('snapsvg');
          *
          * @return  {Number}    Value of maximum interval
          */
-      getMaximumInterval() {
+      maximumInterval() {
         var intervals = [],
           max;
 
@@ -659,7 +659,7 @@ var Snap = require('snapsvg');
        *
        * @return  {Object}                        Percent values for outer, inner, and center radius of every interval
        */
-      getRadiiForIntervals(numberOfIntervals) {
+      getIntervalRadii(numberOfIntervals) {
         var step = (this.diagramRadii.segmentMax - this.diagramRadii.segmentMin) / numberOfIntervals,
           innerRadius = '',
           outerRadius = '',

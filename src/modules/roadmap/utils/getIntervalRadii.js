@@ -8,7 +8,7 @@
 
 import {diagramRadii} from '../constants';
 
-const getRadiiForIntervals = numberOfIntervals => {
+const getIntervalRadii = numberOfIntervals => {
   const step = (diagramRadii.segmentMax - diagramRadii.segmentMin) / numberOfIntervals;
   const radii = [];
 
@@ -23,4 +23,4 @@ const getRadiiForIntervals = numberOfIntervals => {
   return radii;
 };
 
-export default getRadiiForIntervals;
+export default getIntervalRadii;

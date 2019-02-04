@@ -4,7 +4,7 @@
  * @return  {Number}    Value of maximum interval
  */
 
-const getMaximumInterval = roadmap => {
+const maximumInterval = roadmap => {
   const intervals = [];
 
   roadmap.forEach(e => {
@@ -16,4 +16,4 @@ const getMaximumInterval = roadmap => {
   return Math.max(...intervals);
 };
 
-export default getMaximumInterval;
+export default maximumInterval;

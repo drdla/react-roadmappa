@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 import adjustCenters from './utils/adjustCenters';
 import buildFeatureChains from './utils/buildFeatureChains';
-import countFeatureEndpoints from './utils/countFeatureEndpoints';
 import cartesianCenter from './utils/cartesianCenter';
-import getMaximumInterval from './utils/getMaximumInterval';
-import getRadiiForIntervals from './utils/getRadiiForIntervals';
+import countFeatureEndpoints from './utils/countFeatureEndpoints';
+import getIntervalRadii from './utils/getIntervalRadii';
+import maximumInterval from './utils/maximumInterval';
 
 import Connectors from './Connectors';
 import DiagramLabel from './DiagramLabel';
@@ -32,8 +32,8 @@ export default class Diagram extends React.Component {
   };
 
   absMiddle = this.props.size / 2;
-  intervals = getMaximumInterval(this.props.data.roadmap);
-  intervalRadii = getRadiiForIntervals(this.intervals);
+  intervals = maximumInterval(this.props.data.roadmap);
+  intervalRadii = getIntervalRadii(this.intervals);
   sections = this.props.data.roadmap.map((_, i) => i);
 
   state = {
@@ -57,6 +57,7 @@ export default class Diagram extends React.Component {
             key={s}
             section={s}
             sections={sections}
+            intervalRadii={this.intervalRadii}
             intervals={this.intervals}
             absMiddle={am}
             size={size}

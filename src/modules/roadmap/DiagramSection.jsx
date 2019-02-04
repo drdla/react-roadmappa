@@ -1,14 +1,11 @@
 import * as React from 'react';
 
-import getRadiiForIntervals from './utils/getRadiiForIntervals';
 import perc2Abs from './utils/perc2Abs';
 
 import DiagramSectionBackground from './DiagramSectionBackground';
 import DiagramSectionLabel from './DiagramSectionLabel';
 
-const DiagramSection = ({absMiddle, children, data, intervals, section, sections, size}) => {
-  const intervalRadii = getRadiiForIntervals(intervals);
-
+const DiagramSection = ({absMiddle, children, data, intervalRadii, intervals, section, sections, size}) => {
   const fraction = 360 / sections;
   const startAngle = fraction * section;
   const endAngle = startAngle + fraction;
