@@ -38,7 +38,9 @@ const DiagramSectionLabel = ({absMiddle, section, sections, size, text}) => {
         <path id={id} d={arc} />
       </defs>
       <Label section={section} sections={sections}>
-        <textPath xlinkHref={`#${id}`}>{text}</textPath>
+        <textPath xlinkHref={`#${id}`} startOffset="50%">
+          {text}
+        </textPath>
       </Label>
     </React.Fragment>
   );
